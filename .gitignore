@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# Audio files
+*.mp3
+*.wav
+*.ogg
+
+# Logs
+*.log
+
+# Local configuration
+config.local.py
+
+# Cached audio files
+cached_audio/
