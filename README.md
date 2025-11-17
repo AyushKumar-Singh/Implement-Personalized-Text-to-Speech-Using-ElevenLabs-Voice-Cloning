@@ -1,142 +1,189 @@
-# 🎙️ Personalized Text-to-Speech System (ElevenLabs Voice Cloning)
+# 🎙️ Personalized Text-to-Speech System (ElevenLabs Voice Cloning)  
+**AI Voice Cloning • Natural Speech Synthesis • Multi-Mode TTS Engine**
 
-This project implements a **Personalized Text-to-Speech (TTS) System** powered by the **ElevenLabs Voice Cloning API**, designed to generate **natural-sounding audio output in a cloned user voice**.
-It features an interactive console interface with multiple conversion modes, voice quality testing, and batch processing capabilities.
+This project implements a **personalized text-to-speech (TTS)** system using the **ElevenLabs Voice Cloning API**.  
+It allows users to generate **natural-sounding speech** in a cloned voice with configurable parameters, batch conversions, and real-time audio playback.
 
----
-
-## 🧩 Project Overview
-
-**Goal:**
-To develop a system that replicates a user's voice and generates expressive, human-like speech output using ElevenLabs' voice cloning capabilities.
-
-**Core Workflow:**
-
-> Clone voice → Configure API → Convert Text → Generate Speech → Play Output
+Designed as a modular, production-ready Python project with clean architecture, error handling, environment isolation, and extendable components.
 
 ---
 
-## ⚙️ Project Structure
+## 🚀 Key Features
 
-| File               | Description                                                                                                 |
-| ------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `.env`             | Stores environment variables including the ElevenLabs API key and default voice ID.                         |
-| `.gitignore`       | Prevents sensitive and unnecessary files (env, cache, audio outputs, logs) from being tracked in Git.       |
-| `config.py`        | Manages configuration including API settings, voice parameters, and directory structures.                    |
-| `audio_manager.py` | Handles audio playback using pygame, with support for both file and byte-stream inputs.                     |
-| `tts_engine.py`    | Core engine interfacing with ElevenLabs API, supporting streaming and voice parameter customization.        |
-| `main.py`          | Interactive console application with multiple modes: Quick TTS, Batch Convert, and Voice Quality Testing.    |
-| `requirements.txt` | Project dependencies including elevenlabs, pygame, pydub, and other essential packages.                     |
+### 🔊 **Voice Cloning & Speech Generation**
+- Uses ElevenLabs advanced voice cloning API  
+- Produces highly natural and expressive TTS output  
+- Generates speech in real-time or via file output  
+
+### 🛠️ **Multiple Operation Modes**
+- **Quick TTS** → Convert a single text input  
+- **Batch Conversion** → Convert multiple lines/files at once  
+- **Voice Quality Testing** → Try multiple parameter profiles (stability, similarity, style)
+
+### 🎧 **Audio Playback**
+- Uses pygame for instant playback  
+- Supports file playback and byte-stream playback  
+
+### ⚙️ **Configurable Voice Parameters**
+- Stability (0–1)  
+- Similarity Boost (0–1)  
+- Style (0–1)  
+- Speaker Boost (On/Off)  
+
+### 🧩 **Modular Architecture**
+- Clean separation of config, engine, audio manager, and main interface  
+- Easy to extend with new TTS providers or UI systems  
 
 ---
 
-## 🚀 Implementation Steps
+## 📂 Project Structure
 
-### 1. Voice Cloning
+```
+Personalized-TTS-System/
+├── main.py              # Interactive console interface
+├── tts_engine.py        # ElevenLabs TTS integration & streaming
+├── audio_manager.py     # Audio playback handler (pygame)
+├── config.py            # Environment variables, paths, voice settings
+├── requirements.txt     # Dependencies
+├── .env                 # API keys & voice ID (ignored by Git)
+└── audio_outputs/       # Generated speech files
+```
 
-1. Create an account on [ElevenLabs](https://beta.elevenlabs.io/)
-2. Upload voice samples and create your voice clone
-3. Get your unique `voice_id` from the platform
+---
 
-### 2. API Setup & Authentication
+## 🔐 Environment Setup
 
-1. Obtain your **ElevenLabs API key** from the platform
-2. Create a `.env` file in the project root:
-   ```env
-   ELEVENLABS_API_KEY=your_api_key_here
-   DEFAULT_VOICE_ID=your_voice_id_here
-   ```
+Create a `.env` file in the project root:
 
-### 3. Installation & Setup
+```env
+ELEVENLABS_API_KEY=your_api_key_here
+DEFAULT_VOICE_ID=your_voice_id_here
+```
+
+⚠️ **Never commit `.env` to Git.**  
+Your `.gitignore` already protects sensitive files.
+
+---
+
+## 📦 Installation
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd <repository-name>
+# Clone repo
+git clone <your-repo-url>
+cd Personalized-TTS-System
 
-# Create and activate virtual environment
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\\Scripts\\activate   # Windows
+source venv/bin/activate        # macOS/Linux
+venv\Scripts\activate           # Windows
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 4. Running the Application
+---
+
+## ▶️ Running the Application
+
+Launch the interactive console:
 
 ```bash
 python main.py
 ```
 
-The application provides three main features:
-1. **Quick TTS**: Convert single text inputs to speech
-2. **Batch Convert**: Process multiple text inputs in sequence
-3. **Voice Quality Test**: Test different voice settings for optimal output
+You will be presented with three options:
+
+### 1️⃣ **Quick TTS Mode**  
+Enter any text → system generates and plays it instantly.
+
+### 2️⃣ **Batch Mode**  
+Provide a file or multiple text lines → system processes them sequentially.
+
+### 3️⃣ **Voice Quality Tester**  
+Test multiple parameter combinations to fine-tune voice output.
 
 ---
 
-## 🧠 Features & Capabilities
+## 🧠 Voice Parameter Tuning
 
-* ✅ Interactive console interface with rich formatting
-* ✅ Multiple conversion modes (quick, batch)
-* ✅ Voice quality testing with different parameters
-* ✅ Configurable voice settings (stability, similarity)
-* ✅ Progress tracking and error handling
-* ✅ Audio playback controls
-* ✅ Logging system for debugging
+The system supports high-flexibility adjustments:
+
+| Parameter          | Range     | Description                                      |
+|-------------------|-----------|--------------------------------------------------|
+| Stability         | 0.0–1.0   | Controls consistency & smoothness               |
+| Similarity Boost  | 0.0–1.0   | Enhances similarity to original cloned voice     |
+| Style             | 0.0–1.0   | Controls expressiveness                          |
+| Speaker Boost     | On/Off    | Enhances clarity & projection                   |
+
+Configure defaults in **config.py** or override interactively.
 
 ---
 
 ## 🧰 Technologies Used
 
-* **Language:** Python 3.8+
-* **API:** ElevenLabs Voice Cloning API
-* **Key Libraries:**
-  * `elevenlabs` - API integration
-  * `pygame` - Audio playback
-  * `pydub` - Audio processing
-  * `python-dotenv` - Environment management
-  * `rich` - Console interface
-  * `requests` - HTTP client
+- **Python 3.8+**
+- **ElevenLabs API**
+- **pygame** – audio playback
+- **pydub** – audio processing
+- **python-dotenv** – env variable management
+- **rich** – modern console UI
+- **requests** – API client
 
 ---
 
-## 🎯 Voice Settings
-
-The system supports customizable voice parameters:
-* **Stability (0.0-1.0)**: Controls output consistency
-* **Similarity Boost (0.0-1.0)**: Adjusts similarity to original voice
-* **Style (0.0-1.0)**: Controls expressiveness
-* **Speaker Boost**: Enhances voice clarity
+## 🧪 Logging & Error Handling
+- Detailed logs stored in `/logs` (if enabled)
+- Graceful fallback if API fails or rate limits occur
+- Clear terminal feedback powered by **rich**
 
 ---
 
-## 📚 Resources
+## 🌍 Example Usage
 
-* [ElevenLabs API Documentation](https://api.elevenlabs.io/docs)
-* [Python dotenv Documentation](https://pypi.org/project/python-dotenv/)
-* [pygame Documentation](https://www.pygame.org/docs/)
-* [Rich Documentation](https://rich.readthedocs.io/)
+### Quick TTS:
+```bash
+"Hello Ayush, your personalized voice system is active."
+```
 
----
+### Batch Mode:
+```
+Enter the path of a text file:
+sentences.txt
+```
 
-## 💡 Author
-
-**Ayush Kumar Singh**
-AI/ML + Automation Engineer | LangChain • AutoGen • Cloud AI • Full-Stack Intelligent Systems
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Parameter Test Mode:
+- Try low stability  
+- Try high similarity  
+- Compare output differences  
 
 ---
 
-## ⚠️ Important Notes
+## 📚 Useful Resources
 
-* Ensure you have sufficient API credits on your ElevenLabs account
-* Store sensitive information (API keys) in `.env` file
-* Check output directory permissions before running
-* Audio files are saved in the `audio_outputs` directory
+- ElevenLabs API Docs → https://api.elevenlabs.io/docs  
+- pygame Documentation → https://www.pygame.org/docs/  
+- pydub Documentation → https://pydub.com/  
+- rich Library → https://rich.readthedocs.io/  
+
+---
+
+## 💡 Author  
+**Ayush Kumar Singh**  
+AI / Automation Engineer • Cloud AI • LangChain • AutoGen • Full-Stack Intelligent Systems
+
+---
+
+## 📝 License  
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+## ⚠️ Notes  
+- Ensure sufficient ElevenLabs credits  
+- Save API keys only in `.env`  
+- Check write permissions for `audio_outputs`  
+- Large texts may take longer to process  
+
+---
+
